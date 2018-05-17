@@ -7,6 +7,10 @@ const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
+app.get("/app",function(req,res){
+  console.log("req",req);
+  console.log("res",res);
+})
 app.listen(3000, function () {
   console.log('hello world');
 });

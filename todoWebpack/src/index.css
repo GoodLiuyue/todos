@@ -49,6 +49,18 @@ button,input{
     left: 0;
     top: 0;
 }
+.item-checkbox{
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #333;
+}
+.item-checkbox.active{
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #000;
+    color:white;
+    background: #000;
+}
 .item-btn{
     text-align: center;
     margin-left:470px; 
@@ -60,10 +72,12 @@ button,input{
     margin:0 50px;
 }
 .input{
+    width: 400px;
     padding: 0 50px;
 }
 .block{
     display: block;
+    font-size: 20px;
 }
 .item:hover{
     box-shadow: 0 0 15px 10px #eee;
@@ -78,6 +92,11 @@ button,input{
 }
 .batchDel{
     float:right; 
+}
+.searchBtn{
+    position:absolute;
+    right: 0;
+    top: 0;
 }
 .clearfix{
     clear: both;

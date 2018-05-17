@@ -45,11 +45,16 @@ export default class ListItemContent extends PureComponent {
               fieldID={this.props.fieldID}
               onkeydown={this.props.onkeydown}/>
         }
-        <input type="checkbox" checked={item.isChecked}
-          className="item-checkbox"
-          onChange={() => this.props.fieldID(item.id)("toggle")}/>
+        {/* <input type="checkbox" checked={item.isChecked}className="item-checkbox"
+          onChange={() => this.props.fieldID(item.id)("toggle")}/> */}
+        
         <button className={active === item.id ? "item-btn block" : "item-btn"}
-          onClick={() => this.props.fieldID(item.id)("subItem")}>&#935;</button>
+            onClick={() => this.props.fieldID(item.id)("subItem")}>
+            &#10007;</button>
+          <div className={ item.isChecked ? "item-checkbox active" :"item-checkbox"}
+            onClick={() => this.props.fieldID(item.id)("toggle")}>
+            &#10003;
+          </div>
       </div>
     )
   }
