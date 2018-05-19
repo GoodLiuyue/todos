@@ -1,44 +1,34 @@
 import * as type from "./active-type.js";
-import loading from "./api.js";
+// import loading from "./api.js";
 export function subTodo(data) {
     return {
         type: type.SUB_TODO,
         payload: data
     }
 }
-export function subTodo(data) {
+
+export function addTodo(data) {
     return {
-        type: type.SUB_TODO,
+        type: type.ADD_TODO,
         payload: data
     }
 }
-export function subTodo(data) {
+
+export function batchTodo() {
     return {
-        type: type.SUB_TODO,
-        payload: data
+        type: type.BATCH_TODO
     }
 }
-export function subTodo(data) {
+
+export function allSelectTodo() {
     return {
-        type: type.SUB_TODO,
-        payload: data
+        type: type.ALL_SELECT_TODO
     }
 }
-export function subTodo(data) {
+
+export function selectTodo(id) {
     return {
-        type: type.SUB_TODO,
-        payload: data
-    }
-}
-export function subTodo(data) {
-    return {
-        type: type.SUB_TODO,
-        payload: data
-    }
-}
-export function subTodo(data) {
-    return {
-        type: type.SUB_TODO,
-        payload: data
+        type: type.SELECT_TODO,
+        payload: id
     }
 }

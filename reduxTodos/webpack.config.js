@@ -23,7 +23,9 @@ module.exports = {
     },
     devServer: {
         hot: true,
-        open: true
+        open: true,
+        host: '127.0.0.1',
+        port :9000
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './index.html' }),
