@@ -1,0 +1,113 @@
+div,p,span,ul,li,button,input{
+    margin: 0;
+    padding:0;
+    font-size: 14px;
+}
+button,input{
+    outline:none;
+    border:none;
+}
+.todos{
+    width:600px;
+    margin:100px  auto 0;
+    border:1px solid #eee;
+    box-shadow: 0 0 15px 5px #eee;
+    overflow: hidden;
+}
+.ul{
+    list-style-type:none;
+    list-style: none;
+}
+.w{
+    width:100%;
+}
+.btn{
+    width:80px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+.input,
+.btn,
+.item-checkbox,
+.item-input,
+.toolbox,
+.item-btn{
+    height:40px;
+    line-height: 40px;
+}
+.item{
+    position: relative;
+    border: 1px solid #eee;
+}
+.item-checkbox,.item-btn{
+    width: 20px;
+    height:20px;
+    margin: 10px;
+    border-radius:50%; 
+    position:absolute;
+    left: 0;
+    top: 0;
+}
+.item-checkbox{
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #333;
+}
+.item-checkbox.active{
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #000;
+    color:white;
+    background: #000;
+}
+.item-btn{
+    text-align: center;
+    margin-left:470px; 
+    line-height: 20px;
+    display: none;
+}
+.item-input{
+    padding: 0 20px;
+    margin:0 50px;
+}
+.input{
+    width: 400px;
+    padding: 0 50px;
+}
+.block{
+    display: block;
+    font-size: 20px;
+}
+.item:hover{
+    box-shadow: 0 0 15px 10px #eee;
+}
+.total{
+    float:left; 
+    padding: 0 10px;
+    line-height: 40px;
+}
+.toolbox{
+    position: relative;
+}
+.batchDel{
+    float:right; 
+}
+.searchBtn{
+    position:absolute;
+    right: 0;
+    top: 0;
+}
+.clearfix{
+    clear: both;
+}
+.clearfix::after{
+    clear: both;
+    overflow: hidden;
+    height: 0;
+    display: block;
+    content: "";
+}
+.c2{
+    color: #eee;
+}
