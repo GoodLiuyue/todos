@@ -1,38 +1,35 @@
 
 import React, { PureComponent } from 'react';
-class List extends PureComponent {
-  render() {
-    let { data } = this.props;
-    return (
-      <ul className="w ul">
-        <ListItem
-          data={data}
-          key={"item"}
-          fieldID={this.props.fieldID}
-          onKeyDown={this.props.onKeyDown} />
-      </ul>
-    );
-  }
+let List = (props) => {
+  let { data } = props;
+  return (
+    <ul className="w ul">
+      <ListItem
+        data={data}
+        key={"item"}
+        fieldID={props.fieldID}
+        onKeyDown={props.onKeyDown} />
+    </ul>
+  );
 }
-class ListItem extends PureComponent {
-  render() {
-    let { data } = this.props;
-    return (
-      data.map((item, index) => {
-        return (
-          <li key={Math.random()} className="w item"
-            onMouseLeave={() => this.props.fieldID(item.id)("isAction")}
-            onMouseEnter={() => this.props.fieldID(item.id)("isAction")}
-            >
-            <ListItemContent
-              item={item}
-              fieldID={this.props.fieldID}
-              onKeyDown={this.props.onKeyDown} />
-          </li>
-        );
-      })
-    )
-  }
+
+let ListItem = (props) => {
+  let { data } = props;
+  return (//
+    data.map((item, index) => {
+      return <li key={Math.random()} className="w item"
+        // onMouseLeave={() => props.fieldID(item.id)("isAction")}//
+        // onMouseEnter={() => props.fieldID(item.id)("isAction")}//
+        onMouseOut={() => props.fieldID(item.id)("isAction")}//
+        onMouseOver={() => props.fieldID(item.id)("isAction")}//
+      >
+        <ListItemContent
+          item={item}
+          fieldID={props.fieldID}
+          onKeyDown={props.onKeyDown} />
+      </li>
+    })
+  )
 }
 class ListItemContent extends PureComponent {
   render() {
@@ -65,35 +62,31 @@ class ListItemContent extends PureComponent {
   }
 }
 
-class ListItemUpdate extends PureComponent {
-  render() {
-    let { item } = this.props;
-    return <input type="text"
-      className="item-input" autoFocus
-      onKeyDown={(e) => this.props.onKeyDown(e.target.value, e.keyCode, item.id)} />
-  }
+let ListItemUpdate = (props) => {
+  let { item } = props;
+  return <input type="text"
+    className="item-input" autoFocus
+    onKeyDown={(e) => props.onKeyDown(e.target.value, e.keyCode, item.id)} />
 }
-class Tools extends PureComponent {
-  render() {
-    let fieldSelect = this.props.fieldSelect;
-    return (
-      <div className="w toolbox clearfix">
-        <span className="total"> 总共{this.props.data.length}条数据</span>
-        <button className="allSelect btn" onClick={() => fieldSelect("allSelect")}>全选</button>
-        <button className="noSelect btn" onClick={() => fieldSelect("noSelect")}>未被选择</button>
-        <button className="isSelect btn" onClick={() => fieldSelect("isSelect")}>被选择</button>
-        <button className="batchDel btn" onClick={() => fieldSelect("batchDel")}>批量删除</button>
-      </div>
-    )
-  }
+let Tools = (props) => {
+  let fieldSelect = props.fieldSelect;
+  return (
+    <div className="w toolbox clearfix">
+      <span className="total"> 总共{props.data.length}条数据</span>
+      
+      <button className="allSelect btn" onClick={() => fieldSelect("allSelect")}>全选</button>
+      <button className="noSelect btn" onClick={() => fieldSelect("noSelect")}>未被选择</button>
+      <button className="isSelect btn" onClick={() => fieldSelect("isSelect")}>被选择</button>
+
+      <button className="batchDel btn" onClick={() => fieldSelect("batchDel")}>批量删除</button>
+    </div>
+  )
 }
-class Input extends PureComponent {
-  render() {
-    return <input type="text" className="w input"
-      value={this.props.value}
-      onChange={(e) => this.props.onChange(e.target.value)}
-      onKeyDown={(e) => this.props.onKeyDown(e.target.value, e.keyCode)} />
-  }
+let Input = (props) => {
+  return <input type="text" className="w input"
+    value={props.value}
+    onChange={(e) => props.onChange(e.target.value)}
+    onKeyDown={(e) => props.onKeyDown(e.target.value, e.keyCode)} />
 }
 class App extends PureComponent {
   constructor(props) {
@@ -150,13 +143,42 @@ class App extends PureComponent {
   //filterArr
   //field 某一项 
   //type 相等不等
-  filterArr = (key, val, equal) => {
-    let { data } = this.state;
-    let newData;
+  filterArr = (key, val, equal) => {//
+    let { data } = this.state, newData;
     return newData = data.filter(item =>
       equal ? item.id.option[key] === val :
         item.id.option[key] !== val
-  )}
+    )
+  }
+  time = Date.now();
+  timer = (time, id, field) => {
+    let now = Date.now();
+    if (now - time > 50) {
+      this.time = now;
+      this.mapArr(id, field);
+    }
+  }
+
+  isAction = (id, value) => {
+    let { data } = this.state, newData;
+    newData = data.map((item) => {
+      if (item.id === id) {
+        return {
+          id: {
+            ...item.id,
+            option: {
+              ...item.id.option,
+              isAction: value
+            }
+          },
+          value: item.value
+        }
+      } else {
+        return item;
+      }
+    });
+    this.setState({ data: newData, newData });
+  }
   onChange = (value) => { if (value) { this.setState({ value }); } }
   onKeyDown = (value, key, id) => {
     if (!value) return false;
@@ -203,6 +225,7 @@ class App extends PureComponent {
     }
   }
   fieldID = (id) => {
+    let { data } = this.state, newData, now;
     return (field) => {
       switch (field) {
         case "code":
@@ -211,7 +234,33 @@ class App extends PureComponent {
           this.setState({ data: newData, newData });
           break;
         case "isAction":
-          this.mapArr(id, field);
+          this.time ? this.time : Date.now();
+          this.timer(this.time, id, field);
+          // this.mapArr(id, field);
+          break;
+        case "out":
+          this.time ? this.time : Date.now();
+          now = Date.now();
+          if (now - time > 50) {
+            this.time = now;
+            this.isAction(id, false);
+          }
+          break;
+        case "over":
+          this.time ? this.time : Date.now();
+          now = Date.now();
+          if (now - time > 50) {
+            this.time = now;
+            this.isAction(id, true);
+          }
+
+          timer = (time, id, field) => {
+            now = Date.now();
+            if (now - time > 50) {
+              this.time = now;
+              this.mapArr(id, field);
+            }
+          }
           break;
         case "isEdit":
           this.mapArr(id, field);
@@ -225,14 +274,14 @@ class App extends PureComponent {
     }
   }
   render() {
-    let { value, data, newData } = this.state;
+    let { value, data, flag } = this.state;
     return (
       <div className="todos">
         <Input value={value} onKeyDown={this.onKeyDown} onChange={this.onChange} />
-        <List data={newData} fieldID={this.fieldID} onKeyDown={this.onKeyDown} />
+        <List data={data.filter()} fieldID={this.fieldID} onKeyDown={this.onKeyDown} />
         {
           data.length > 0 &&
-          <Tools fieldSelect={this.fieldSelect} data={newData} />
+          <Tools fieldSelect={this.fieldSelect} data={newData} onFlagChange />
         }
       </div>
     );

@@ -1,9 +1,9 @@
-import React ,{ PureComponent,component } from "react";
-import ReactDom,{ render } from "react-dom";
+import React  from "react"; //细节 文案 方法 命名
+import { render } from "react-dom";
 // import { Router } from "react-router";
 import "./index.css";
 import { BrowserRouter as Router,Route, Link } from 'react-router-dom'
-import App from "./v4.jsx";  
+import App from "./v5.jsx";  
 import Input from "./component/Input.jsx";/*  */
 render(
     <Router>
