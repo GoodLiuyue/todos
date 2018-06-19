@@ -1,10 +1,20 @@
-import React from "react";
+import React ,{ PureComponent }from "react";
 import TodoInput_btn from "./TodoInput_btn.jsx";
 import TodoInput_input from "./TodoInput_input.jsx";
-const TodoInput = (props) => {
-    return <div className="mySimpleTodos-inputBox">
-      <TodoInput_btn/>
-      <TodoInput_input/>
-    </div>
+import { runInThisContext } from "vm";
+export default class TodoInput extends PureComponent{
+    constructor(props){
+      super();
+      this.state={
+        value:""
+      }
+    }
+    render (){
+      return(
+        <div className="mySimpleTodos-inputBox">
+          <TodoInput_btn    batchChecked={this.props.batchChecked} />
+          <TodoInput_input handleValue = {this.props.handleValue } />
+        </div>
+      )
+    }
 }
-export default TodoInput;

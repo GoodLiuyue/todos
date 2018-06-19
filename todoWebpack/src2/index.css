@@ -98,6 +98,13 @@ body{
     vertical-align: middle;
     color:#cc9a9a ;
     font-weight: 200;
+    display: none;
+}
+.mySimpleTodos-item:hover {
+    cursor: pointer;
+}
+.mySimpleTodos-item:hover .item-btn {
+    display: block;
 }
 .mySimpleTodos-tool{
     display:flex;
