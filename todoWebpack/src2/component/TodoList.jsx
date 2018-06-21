@@ -1,7 +1,6 @@
 import React from "react";
 import TodoListItem from "./TodoListItem.jsx";
 const TodoList = (props) => {
-    console.log("litst",props.data)
     return <ul className="mySimpleTodos-list">
         {
             props.data.map((item,index)=>
@@ -13,8 +12,7 @@ const TodoList = (props) => {
                     handleEdit={props.handleEdit}
                     id = {item.id}
                     isChecked ={item.isChecked}
-                    value = {item.value}
-                    />
+                    value = {item.value}/>
             )
         }
     </ul>

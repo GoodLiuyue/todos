@@ -12,7 +12,9 @@ export default class TodoInput extends PureComponent{
     render (){
       return(
         <div className="mySimpleTodos-inputBox">
-          <TodoInput_btn    batchChecked={this.props.batchChecked} />
+          { this.props.data.length > 0  && 
+            <TodoInput_btn    batchChecked={this.props.batchChecked} />
+          }
           <TodoInput_input handleValue = {this.props.handleValue } />
         </div>
       )

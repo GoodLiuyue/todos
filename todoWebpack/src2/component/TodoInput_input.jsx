@@ -7,25 +7,27 @@ export default  class TodoInput_input extends PureComponent {
         }
     }
 
-    onChange = (e) =>{
+    //shabi liuyue ; wo meng guo zhangg wo guoque  qo  wo yaozhengzenme xiangxiang ;
+    // wo  quoguo  ;wo  wo  ;wo wo ; wo ; wo; wo wo;w ow; ow ; wow; wo;
+    // wo  wo  wo wo  wo  wo  wow  wow ; wow ;
+
+    onchangeValue = (value) => {
         this.setState({
-            value:e.target.value
+            value
         })
     }
-    // onKeyDown = async (e)=>{
-    //     this.props.handleValue(e) ;
-    //     this.onclear();
-    // }
-    // onclear = () =>{
-    //     this.setState({
-    //         value:""
-    //     });
-    // }
+    cleaValue = () =>{
+        this.setState({value: ""})
+    }
+    changeValue =  (e) => {
+        this.props.handleValue(e,this.cleaValue) 
+       
+    }
     render(){
         return <input className="mySimpleTodos-input" type="text"
-        onKeyDown={(e) =>   this.props.handleValue(e)  }
-        // value ={e.target.value}
-        // onChange={(e)=>{this.onChange(e)}}
-        autoFocus placeholder="What needs to be none" />
+            onChange = { (e) =>this.onchangeValue (e.target.value )}
+            value ={this.state.value}
+            onKeyDown={(e) =>this.changeValue(e) }
+            autoFocus placeholder="What needs to be none" />
     }
 }

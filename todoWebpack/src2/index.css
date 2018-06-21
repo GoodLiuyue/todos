@@ -47,6 +47,7 @@ body{
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 10;
     display: flex;
     align-items: center;
     text-align: center;
@@ -80,6 +81,10 @@ body{
 }
 .item-input.edit{
     border: 1px solid #e6e6e6;
+}
+.item-input.checked{
+    text-decoration: line-through;
+    color :#ddd;
 }
 .item-checkbox{
     border-radius: 50%;
@@ -160,4 +165,5 @@ body{
 }
 .tool-query span.active{
     border:1px solid #efd5d6;
+    border-radius: 5px;
 }
