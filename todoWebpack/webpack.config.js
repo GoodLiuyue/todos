@@ -9,7 +9,8 @@ const port = 7000;
 module.exports = {
     mode: 'development',
     entry: {
-        main: "./src2/index.js"
+        // main: "./src2/index.js",
+        index: "./src3/index.js"
     },
     output: {
         path: path.resolve(__dirname, './dist'),
